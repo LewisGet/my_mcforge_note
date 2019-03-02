@@ -1,5 +1,6 @@
 package com.lj.sence;
 
+import net.minecraft.client.settings.KeyBinding;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.passive.EntityChicken;
 import net.minecraft.entity.player.EntityPlayer;
@@ -7,11 +8,25 @@ import net.minecraft.util.text.ITextComponent;
 import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraftforge.event.entity.player.EntityItemPickupEvent;
+import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.common.gameevent.InputEvent;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.lwjgl.input.Keyboard;
 
 public class EventHandler {
+
+    public static KeyBinding function_key;
+
+    public EventHandler () {
+
+        KeyBinding keyInput = new KeyBinding("test", Keyboard.KEY_V, "test2");
+
+        ClientRegistry.registerKeyBinding(keyInput);
+
+        function_key = keyInput;
+    }
 
     @SubscribeEvent
     public void pickupItem(EntityItemPickupEvent event) {
@@ -41,8 +56,28 @@ public class EventHandler {
     }
 
     @SubscribeEvent
-    public void chickenAttack(LivingEvent e)
+    public void playerEvent(LivingEvent e)
     {
         Entity entity = e.getEntity();
+
+        if (entity == null)
+        {
+            return;
+        }
+
+        String name = entity.getName();
+
+        // player name is for dev
+        if (name.contains("LewisJang") || name.contains("Player"))
+        {
+            // do something
+        }
+    }
+
+    @SubscribeEvent
+    public void inputEvent(InputEvent.KeyInputEvent e)
+    {
+        Logger logs = LogManager.getLogger("input event");
+        logs.info(function_key.isKeyDown());
     }
 }
