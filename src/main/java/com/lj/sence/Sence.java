@@ -1,21 +1,12 @@
 package com.lj.sence;
 
 import com.lj.sence.Entity.EntityTestChickenRegistry;
-/*
-import com.lj.sence.Entity.TestChicken;
-import com.lj.sence.Entity.render.RenderTestChicken;
-import net.minecraft.client.renderer.entity.Render;
-import net.minecraft.client.renderer.entity.RenderManager;
-*/
 import com.lj.sence.Entity.TestChickenEntity;
 import com.lj.sence.Entity.render.TestChickenRender;
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.client.renderer.entity.RenderManager;
+import net.minecraft.client.settings.KeyBinding;
 import net.minecraftforge.common.MinecraftForge;
-/*
-import net.minecraftforge.fml.client.registry.IRenderFactory;
-import net.minecraftforge.fml.client.registry.RenderingRegistry;
-*/
 import net.minecraftforge.fml.client.registry.IRenderFactory;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.common.Mod;
@@ -23,7 +14,6 @@ import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.Mod.Instance;
-//import org.apache.logging.log4j.Logger;
 
 @Mod(modid = Sence.MODID, name = Sence.NAME, version = Sence.VERSION)
 public class Sence
@@ -34,6 +24,7 @@ public class Sence
     public static final String MODID = "sence";
     public static final String NAME = "lj media sence";
     public static final String VERSION = "1.0";
+    public static KeyBinding function_key;
 
     @EventHandler
     public void preInit(FMLPreInitializationEvent event)
